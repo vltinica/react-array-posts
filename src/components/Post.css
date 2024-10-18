@@ -3,5 +3,20 @@
     margin: 25px auto;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0,0,0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
+hr {
+    max-width: 75%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.loadingStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 24px;
+    color: red;
+}
+
