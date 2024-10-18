@@ -2,20 +2,31 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Post from "./Post";
 
+const url = "https://jsonplaceholder.typicode.com/posts";
+
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  const url = "https://jsonplaceholder.typicode.com/posts";
+  useEffect(async () => {
+    try {
+      const res = await fetch(url);
+      const posts = await res.json();
+      setPosts(posts);
+    } catch (error) {
+      setError(error.message)
+    }
+    setIsLoading(false)
+  },[]);
 
-  useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => setPosts(data))
-      .catch((error) => setError(error.message))
-      .finally(() => setIsLoading(false));
-  }, []);
+  // useEffect(() => {
+  //   fetch(url)
+  //     .then((response) => response.json())
+  //     .then((data) => setPosts(data))
+  //     .catch((error) => setError(error.message))
+  //     .finally(() => setIsLoading(false));
+  // }, []);
 
   if (error) {
     return <h1>Error: {error}</h1>;
