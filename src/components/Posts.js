@@ -9,15 +9,18 @@ const Posts = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(async () => {
-    try {
-      const res = await fetch(url);
-      const posts = await res.json();
-      setPosts(posts);
-    } catch (error) {
-      setError(error.message)
+  useEffect(() => {
+    const fetchData = async() => {
+        try {
+          const res = await fetch(url);
+          const posts = await res.json();
+          setPosts(posts);
+        } catch (error) {
+          setError(error.message)
+        }
+        setIsLoading(false)
     }
-    setIsLoading(false)
+    fetchData()
   },[]);
 
   // useEffect(() => {
